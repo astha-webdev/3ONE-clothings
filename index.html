@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="3ONE — modern essentials, made to move with you. Discover everyday clothing with a bold point of view.">
+  <meta name="theme-color" content="#102f24">
+  <title>3ONE — Own Your Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--green:#123d2d;--green2:#1b513c;--black:#10110f;--cream:#f3f0e8;--gold:#d6b879;--muted:#a9aaa2}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    .announcement{background:var(--gold);color:#171711;text-align:center;padding:9px 15px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+    header{position:sticky;top:0;z-index:20;background:rgba(16,17,15,.95);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff18}
+    .nav{height:76px;max-width:1240px;margin:auto;padding:0 5%;display:flex;align-items:center;justify-content:space-between}
+    .logo{font:36px 'Archivo Black',sans-serif;letter-spacing:-3px}.logo span{color:var(--gold)}
+    .navlinks{display:flex;gap:34px;align-items:center;font-size:12px;text-transform:uppercase;letter-spacing:1.5px}
+    .navlinks a:hover{color:var(--gold)}
+    .navright{display:flex;align-items:center;gap:18px}
+    .cartbtn,.menubtn{background:none;border:0;color:var(--cream);font-size:12px;letter-spacing:1px}
+    .cartcount{color:var(--gold);font-weight:700}
+    .menubtn{display:none;font-size:22px}
+    .hero{min-height:650px;display:grid;grid-template-columns:1.05fr .95fr;background:var(--green);overflow:hidden}
+    .hero-copy{padding:100px 8% 85px max(8%,calc((100vw - 1240px)/2));display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+    .eyebrow{color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:22px}
+    h1{font:clamp(60px,8vw,112px)/.91 'Archivo Black',sans-serif;letter-spacing:-5px;text-transform:uppercase;max-width:650px}
+    h1 em{font-style:normal;color:var(--gold)}
+    .hero-copy p{max-width:390px;color:#e0e8e1;margin:27px 0 32px;font-size:15px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;background:var(--gold);color:#171711;padding:16px 24px;border:1px solid var(--gold);font-size:11px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;transition:.25s}
+    .btn:hover{background:transparent;color:var(--gold)}
+    .hero-image{min-height:650px;position:relative}
+    .hero-image img{filter:brightness(.78)}
+    .hero-image:after{content:'3ONE / EVERYDAY UNIFORM';position:absolute;bottom:30px;right:32px;color:white;font-size:10px;letter-spacing:3px}
+    .ticker{padding:17px 0;border-bottom:1px solid #ffffff20;border-top:1px solid #ffffff20;overflow:hidden;white-space:nowrap;color:var(--gold);font:20px 'Archivo Black',sans-serif;letter-spacing:2px}
+    .ticker span{padding:0 28px}
+    section{scroll-margin-top:80px}
+    .section{max-width:1240px;margin:auto;padding:100px 5%}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:38px}
+    .section-head h2,.story h2,.newsletter h2{font:clamp(36px,5vw,62px)/.98 'Archivo Black',sans-serif;letter-spacing:-2px;text-transform:uppercase}
+    .section-head p{max-width:300px;color:var(--muted);font-size:13px}
+    .filters{display:flex;gap:9px;margin-bottom:28px;flex-wrap:wrap}
+    .filter{background:transparent;color:var(--cream);border:1px solid #ffffff35;padding:9px 16px;font-size:10px;text-transform:uppercase;letter-spacing:1px}
+    .filter.active,.filter:hover{background:var(--gold);color:#171711;border-color:var(--gold)}
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .product-card{min-width:0}
+    .product-image{height:390px;position:relative;background:#222;overflow:hidden}
+    .product-image img{transition:transform .5s}
+    .product-card:hover .product-image img{transform:scale(1.05)}
+    .tag{position:absolute;top:14px;left:14px;background:var(--cream);color:#171711;padding:7px 10px;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+    .product-info{padding:17px 0;display:flex;justify-content:space-between;gap:12px}
+    .product-info h3{font-size:14px;font-weight:600}
+    .product-info p{font-size:12px;color:var(--muted);margin-top:4px}
+    .price{color:var(--gold);font-size:13px;font-weight:700;white-space:nowrap}
+    .add{width:100%;padding:12px;background:transparent;border:1px solid #ffffff45;color:var(--cream);font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+    .add:hover{background:var(--gold);color:#171711;border-color:var(--gold)}
+    .story{display:grid;grid-template-columns:1fr 1fr;background:#e9e5da;color:#171711}
+    .story-image{min-height:560px}
+    .story-copy{padding:80px 10%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+    .story .eyebrow{color:var(--green)}
+    .story p{margin:24px 0;color:#55564f;max-width:430px;font-size:14px}
+    .story .btn{background:var(--green);color:white;border-color:var(--green)}
+    .story .btn:hover{background:transparent;color:var(--green)}
+    .values{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #ffffff24;border-bottom:1px solid #ffffff24}
+    .value{padding:32px 24px;text-align:center;border-right:1px solid #ffffff24}
+    .value:last-child{border:0}
+    .value strong{font:24px 'Archivo Black',sans-serif;color:var(--gold);display:block;margin-bottom:7px}
+    .value span{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+    .newsletter{background:var(--green);padding:75px 5%;text-align:center}
+    .newsletter p{color:#d7e0d9;margin:15px auto 25px;max-width:450px;font-size:13px}
+    .signup{display:flex;max-width:470px;margin:auto}
+    .signup input{flex:1;min-width:0;background:#ffffff12;border:1px solid #ffffff55;color:white;padding:15px;outline:none}
+    .signup input::placeholder{color:#c6cec8}
+    .signup button{border:0;background:var(--gold);color:#171711;padding:0 20px;font-size:10px;font-weight:700;letter-spacing:1px}
+    footer{padding:50px 5% 25px;max-width:1240px;margin:auto}
+    .footer-top{display:flex;justify-content:space-between;gap:30px;align-items:start;padding-bottom:40px}
+    .footer-top p{color:var(--muted);font-size:12px;max-width:250px;margin-top:13px}
+    .footer-links{display:flex;gap:28px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+    .footer-links a:hover{color:var(--gold)}
+    .copyright{border-top:1px solid #ffffff22;padding-top:20px;color:#85877f;font-size:10px;letter-spacing:1px;display:flex;justify-content:space-between}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,100px);background:var(--gold);color:#171711;padding:13px 22px;font-size:12px;font-weight:700;z-index:40;transition:.3s}
+    .toast.show{transform:translate(-50%,0)}
+    .cart-panel{position:fixed;right:0;top:0;height:100vh;width:min(390px,100%);background:#171915;z-index:50;padding:28px;box-shadow:-20px 0 50px #0008;transform:translateX(110%);transition:.3s}
+    .cart-panel.open{transform:translateX(0)}
+    .cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff25;padding-bottom:20px}
+    .cart-head h3{font:24px 'Archivo Black',sans-serif}
+    .closecart{background:none;border:0;color:white;font-size:25px}
+    .cart-items{padding:20px 0;color:var(--muted);font-size:13px}
+    .cart-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ffffff18;color:var(--cream)}
+    .cart-total{border-top:1px solid #ffffff35;padding-top:18px;display:flex;justify-content:space-between;margin-top:15px}
+    .cart-note{font-size:11px;color:var(--muted);margin-top:18px}
+    @media(max-width:800px){
+      .nav{height:66px}.navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:#10110f;padding:25px 5%;flex-direction:column;align-items:flex-start;border-bottom:1px solid #ffffff25}.navlinks.open{display:flex}.menubtn{display:block}
+      .hero{grid-template-columns:1fr}.hero-copy{padding:75px 7%}.hero-image{min-height:420px;height:55vw}
+      .section{padding:75px 6%}.section-head{display:block}.section-head p{margin-top:15px}
+      .products{grid-template-columns:repeat(2,1fr);gap:18px}.product-image{height:300px}
+      .story{grid-template-columns:1fr}.story-image{min-height:400px;height:65vw}.story-copy{padding:65px 8%}
+      .footer-top{flex-direction:column}.footer-links{flex-wrap:wrap}
+    }
+    @media(max-width:520px){
+      .announcement{font-size:9px;letter-spacing:1px}.logo{font-size:31px}
+      h1{font-size:66px}.hero-copy{padding:65px 7%}.hero-image{min-height:350px}
+      .products{grid-template-columns:1fr}.product-image{height:420px}
+      .values{grid-template-columns:1fr}.value{border-right:0;border-bottom:1px solid #ffffff24}
+      .signup{flex-direction:column;gap:8px}.signup button{padding:15px}
+      .copyright{gap:10px;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">A new point of view on everyday essentials — welcome to 3ONE</div>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="#home" aria-label="3ONE home">3<span>O</span>NE</a>
+      <div class="navlinks" id="navlinks">
+        <a href="#home">Home</a><a href="#collection">Collection</a><a href="#story">Our Story</a><a href="#contact">Contact</a>
+      </div>
+      <div class="navright">
+        <button class="cartbtn" id="openCart">BAG <span class="cartcount" id="cartCount">(0)</span></button>
+        <button class="menubtn" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">The everyday collection / 001</div>
+        <h1>Own your<br><em>style.</em></h1>
+        <p>Less noise. More identity. Discover thoughtfully chosen everyday pieces designed to move with you.</p>
+        <a class="btn" href="#collection">Explore collection <span>↗</span></a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1400&q=85" alt="Minimal streetwear fashion editorial">
+      </div>
+    </section>
+
+    <div class="ticker"><span>3ONE — OWN YOUR STYLE ✳ EVERYDAY, ELEVATED ✳ 3ONE — OWN YOUR STYLE ✳ EVERYDAY, ELEVATED ✳</span></div>
+
+    <section class="section" id="collection">
+      <div class="section-head">
+        <div><div class="eyebrow">Curated for your everyday</div><h2>The collection</h2></div>
+        <p>Clean silhouettes. Confident details. Pieces that make getting dressed feel effortless.</p>
+      </div>
+      <div class="filters" aria-label="Filter products">
+        <button class="filter active" data-filter="all">All pieces</button>
+        <button class="filter" data-filter="tops">Tops</button>
+        <button class="filter" data-filter="layers">Layers</button>
+        <button class="filter" data-filter="essentials">Essentials</button>
+      </div>
+      <div class="products" id="products">
+        <article class="product-card" data-category="tops essentials">
+          <div class="product-image"><span class="tag">Bestseller</span><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85" alt="White essential t-shirt"></div>
+          <div class="product-info"><div><h3>Essential Tee</h3><p>Relaxed fit / Everyday cotton</p></div><span class="price">₹899</span></div>
+          <button class="add" data-name="Essential Tee" data-price="899">Add to bag +</button>
+        </article>
+        <article class="product-card" data-category="layers">
+          <div class="product-image"><span class="tag">New drop</span><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85" alt="Casual hoodie"></div>
+          <div class="product-info"><div><h3>Signature Hoodie</h3><p>Soft layer / Easy comfort</p></div><span class="price">₹1,799</span></div>
+          <button class="add" data-name="Signature Hoodie" data-price="1799">Add to bag +</button>
+        </article>
+        <article class="product-card" data-category="essentials tops">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85" alt="Minimal fashion outfit"></div>
+          <div class="product-info"><div><h3>Everyday Edit</h3><p>Modern fit / Easy styling</p></div><span class="price">₹1,299</span></div>
+          <button class="add" data-name="Everyday Edit" data-price="1299">Add to bag +</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-image"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1300&q=85" alt="Friends in contemporary everyday fashion"></div>
+      <div class="story-copy">
+        <div class="eyebrow">A little about us</div>
+        <h2>Made for<br>your kind<br>of everyday.</h2>
+        <p>3ONE is built around a simple idea: style should feel like you. We bring together versatile silhouettes, considered details and an uncomplicated point of view — so you can show up as yourself, every day.</p>
+        <a class="btn" href="#contact">Get in touch <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="values">
+        <div class="value"><strong>01</strong><span>Everyday versatility</span></div>
+        <div class="value"><strong>02</strong><span>Confident simplicity</span></div>
+        <div class="value"><strong>03</strong><span>Style without noise</span></div>
+      </div>
+    </section>
+
+    <section class="newsletter" id="contact">
+      <div class="eyebrow">Stay in the loop</div>
+      <h2>Get the 3ONE edit.</h2>
+      <p>Be first to hear about new drops, fresh edits and everything happening at 3ONE.</p>
+      <form class="signup" id="signupForm">
+        <input type="email" id="email" placeholder="Your email address" required aria-label="Your email address">
+        <button type="submit">Join the list ↗</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div><a class="logo" href="#home">3<span>O</span>NE</a><p>Everyday essentials. A point of view that is all your own.</p></div>
+      <div class="footer-links"><a href="#collection">Shop</a><a href="#story">About</a><a href="mailto:hello@3one.example">Email us</a><a href="#home">Back to top ↑</a></div>
+    </div>
+    <div class="copyright"><span>© 2026 3ONE. ALL RIGHTS RESERVED.</span><span>OWN YOUR STYLE.</span></div>
+  </footer>
+
+  <aside class="cart-panel" id="cartPanel" aria-label="Shopping bag">
+    <div class="cart-head"><h3>Your bag</h3><button class="closecart" id="closeCart" aria-label="Close bag">×</button></div>
+    <div class="cart-items" id="cartItems">Your bag is empty.</div>
+    <div class="cart-total"><strong>Subtotal</strong><strong id="cartTotal">₹0</strong></div>
+    <p class="cart-note">Prototype only: checkout and online payments are not connected yet.</p>
+  </aside>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const menuBtn=document.getElementById('menuBtn');
+    const navlinks=document.getElementById('navlinks');
+    menuBtn.addEventListener('click',()=>navlinks.classList.toggle('open'));
+    navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
+
+    document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter=btn.dataset.filter;
+      document.querySelectorAll('.product-card').forEach(card=>{
+        card.style.display=(filter==='all'||card.dataset.category.split(' ').includes(filter))?'block':'none';
+      });
+    }));
+
+    let cart=[];
+    const cartPanel=document.getElementById('cartPanel');
+    const cartItems=document.getElementById('cartItems');
+    const cartTotal=document.getElementById('cartTotal');
+    const cartCount=document.getElementById('cartCount');
+    const toast=document.getElementById('toast');
+    function showToast(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}
+    function renderCart(){
+      cartCount.textContent='('+cart.reduce((sum,item)=>sum+item.qty,0)+')';
+      if(!cart.length){cartItems.textContent='Your bag is empty.'}
+      else{cartItems.innerHTML=cart.map(item=>`<div class="cart-item"><span>${item.name} × ${item.qty}</span><strong>₹${(item.price*item.qty).toLocaleString('en-IN')}</strong></div>`).join('')}
+      cartTotal.textContent='₹'+cart.reduce((sum,item)=>sum+item.price*item.qty,0).toLocaleString('en-IN');
+    }
+    document.querySelectorAll('.add').forEach(btn=>btn.addEventListener('click',()=>{
+      const name=btn.dataset.name,price=Number(btn.dataset.price);
+      const existing=cart.find(item=>item.name===name);
+      if(existing)existing.qty++;else cart.push({name,price,qty:1});
+      renderCart();showToast(name+' added to your bag');
+    }));
+    document.getElementById('openCart').addEventListener('click',()=>cartPanel.classList.add('open'));
+    document.getElementById('closeCart').addEventListener('click',()=>cartPanel.classList.remove('open'));
+    document.getElementById('signupForm').addEventListener('submit',e=>{
+      e.preventDefault();showToast('Thanks for joining the 3ONE list!');e.target.reset();
+    });
+  </script>
+</body>
+</html>
